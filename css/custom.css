@@ -15,3 +15,7 @@ html {
 .fascia-image {
     max-height: 20px;
 }
+
+.environment-selector {
+    margin-top: 10px;
+}
