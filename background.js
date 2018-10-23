@@ -31,6 +31,7 @@ function notify(message) {
 
 function setInitialData() {
     chrome.storage.sync.set({
+        fascias: ["asadventure", "bever", "cotswold", "cyclesurgery", "juttu", "mctrek", "runnersneed", "snowandrock", "yaya"],
         environments: {
             "prd001": {
                 "asadventure": [
@@ -214,6 +215,9 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
         case "getEnvironments":
             getEnvironments(response);
             break;
+        case "getFascias":
+            getFascias(response);
+            break;
     }
     return true;
 });
@@ -223,3 +227,10 @@ function getEnvironments(response) {
         response(data.environments);
     });
 }
+
+function getFascias(response) {
+    chrome.storage.sync.get("fascias", (data) => {
+        response(data.fascias);
+    });
+}
+
