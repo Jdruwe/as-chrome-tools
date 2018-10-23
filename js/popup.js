@@ -22,8 +22,7 @@ function getEnvironments() {
     });
 
     callEventPageMethod("getEnvironments", function (data) {
-        console.log('>>> getEnvironments', data);
-        buildEnvironmentsSelector(data);
+        $("#nav-sites").append(buildEnvironmentsSelector(data));
         environments = data;
     });
 }
@@ -61,9 +60,30 @@ function capitalizeFirstLetter(string) {
 }
 
 function buildEnvironmentsSelector(environments) {
-    Object.keys(environments).forEach(function (key) {
-        console.log('Key : ' + key)
-    })
+    const group = buildEnvironmentsButtonGroup();
+    appendEnvironmentSelectorItems(environments, group);
+    return group;
+}
+
+function buildEnvironmentsButtonGroup() {
+    const group = document.createElement("div");
+    group.className = "btn-group btn-group-toggle environment-selector";
+    group.dataset.toggle = "buttons";
+    return group;
+}
+
+function appendEnvironmentSelectorItems(environments, group) {
+    Object.keys(environments).forEach(function (environment) {
+        const item = buildEnvironmentSelectorItem(environment);
+        const parsedItem = $.parseHTML(item);
+        $(group).append(parsedItem);
+    });
+}
+
+function buildEnvironmentSelectorItem(environment) {
+    return `<label class="btn btn-light">
+                <input type="radio" name="options" id="${environment}" autocomplete="off">${environment}
+            </label>`;
 }
 
 function callEventPageMethod(type, callback) {
