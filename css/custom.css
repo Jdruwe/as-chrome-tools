@@ -6,3 +6,12 @@ html {
     max-width: 500px;
     padding: 20px;
 }
+
+.tab-content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.fascia-image {
+    max-height: 20px;
+}
