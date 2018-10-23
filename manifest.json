@@ -4,7 +4,8 @@
   "description": "Some handy tools that can be useful while developing for A.S.Adventure.",
   "permissions": [
     "declarativeContent",
-    "notifications"
+    "notifications",
+    "storage"
   ],
   "background": {
     "scripts": ["background.js"],
